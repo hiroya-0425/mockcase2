@@ -1,0 +1,238 @@
+.attendance__detail {
+    background-color: #f5f5f7;
+    padding: 40px 20px;
+    min-height: calc(100vh - 60px);
+}
+
+/* コンテナを中央に */
+.attendance__detail-container {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+/* 見出し */
+.attendance__detail-title {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: 4px solid #000;
+    padding-left: 10px;
+    margin: 0 0 20px 0;
+    max-width: none;
+    margin-left: 20px;
+}
+
+/* カード全体 */
+.attendance__compare {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* カード1つ */
+.attendance__compare-col {
+    padding: 20px;
+}
+
+/* セクションタイトル */
+.attendance__compare-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* テーブル */
+.attendance__detail-table {
+    width: 100%;
+    margin: 0 auto 40px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.attendance__detail-th {
+    width: 25%;
+    text-align: left;
+    padding: 24px 50px;
+    font-weight: bold;
+    color: #969595;
+    border-bottom: 1px solid #b5b3b3;
+    vertical-align: middle;
+    line-height: 1.6;
+}
+
+.attendance__detail-td {
+    padding: 24px 20px;
+    border-bottom: 1px solid #b5b3b3;
+    line-height: 1.6;
+}
+
+/* 入力フォーム */
+.attendance__input {
+    width: 75px;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 5px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.attendance__textarea {
+    width: 95%;
+    min-height: 60px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* エラー表示 */
+.attendance__error {
+    font-size: 12px;
+    color: #e74c3c;
+    margin-top: 4px;
+}
+
+/* ボタン */
+.attendance__detail-actions {
+    text-align: right;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.attendance__detail-btn {
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.attendance__detail-btn:hover {
+    opacity: 0.8;
+}
+
+/* 注意書き */
+.attendance__detail-note {
+    font-size: 13px;
+    color: #e74c3c;
+    margin-top: 10px;
+    text-align: right;
+}
+
+.date-year {
+    margin-right: 110px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.time-separator {
+    margin: 0 30px;
+    display: inline-block;
+    color: #555;
+    font-weight: bold;
+}
+
+.attendance__detail-row--remarks .attendance__detail-th,
+.attendance__detail-row--remarks .attendance__detail-td {
+    border-bottom: none;
+}
+
+.attendance__name {
+    margin-left: 10px;
+}
+
+/* ==============================
+   レスポンシブ対応
+============================== */
+
+/* PC (1400px～1540px) */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .attendance__detail-container {
+        width: 55%;
+    }
+
+    .attendance__detail-title {
+        font-size: 22px;
+        margin-left: 10px;
+    }
+
+    .attendance__detail-th,
+    .attendance__detail-td {
+        padding: 26px 24px;
+        font-size: 15px;
+    }
+}
+
+/* タブレット (768px～850px) */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .attendance__detail-container {
+        width: 70%;
+        margin: 0 auto;
+    }
+    .attendance__detail-table {
+        font-size: 14px;
+        table-layout: fixed;
+    }
+    .attendance__detail-title {
+        font-size: 18px;
+        margin-left: 0;
+    }
+
+    .attendance__detail-th {
+    width: 90px;
+    white-space: nowrap;
+    padding: 16px 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    }
+
+    .attendance__detail-td {
+        padding: 16px 12px;
+        font-size: 14px;
+    }
+
+    .attendance__input {
+        width: 65px;
+        margin-left: 20px;
+        font-size: 14px;
+    }
+
+    .attendance__textarea {
+        font-size: 14px;
+        margin-left: 20px;
+    }
+
+    .attendance__detail-btn {
+        width: 20%;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .attendance__detail-note {
+        font-size: 12px;
+        text-align: left;
+    }
+    .date-year{
+        margin-left: 25px;
+    }
+    .attendance__name {
+        margin-left: 25px;
+    }
+
+    .time-separator {
+        margin: 0 30px;
+        display: inline-block;
+        color: #555;
+        font-weight: bold;
+    }
+}

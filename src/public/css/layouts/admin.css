@@ -1,0 +1,96 @@
+.admin__header {
+    background-color: #000;
+    padding: 10px 20px;
+}
+
+/* ナビゲーション */
+.admin__header-nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.admin__header-inner {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+.admin__header-logo {
+    margin: 0;
+}
+
+.admin__header-logo-image {
+    height: 28px;
+}
+
+/* メニュー部分 */
+.admin__header-menu {
+    display: flex;
+    align-items: center;
+
+}
+
+.admin__header-link:hover {
+    text-decoration: underline;
+}
+
+/* ログアウト */
+.admin__header-logout-form {
+    margin: 0;
+}
+
+.admin__header-link,
+.admin__header-logout-button {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    margin-left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+}
+
+.admin__header-logout-button:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------
+   レスポンシブ対応
+------------------------------ */
+
+/* PC (1400px～1540px) */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+
+    .admin__header-link,
+    .admin__header-logout-button {
+        font-size: 15px;
+        margin-left: 24px;
+    }
+
+    .admin__header-logo-image {
+        height: 32px;
+    }
+}
+
+/* タブレット (768px～850px) */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .admin__header {
+        padding: 8px 15px;
+    }
+
+    .admin__header-link,
+    .admin__header-logout-button {
+        font-size: 13px;
+        margin-left: 12px;
+    }
+
+    .admin__header-logo-image {
+        height: 24px;
+    }
+}

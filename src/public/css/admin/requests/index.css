@@ -1,0 +1,191 @@
+body {
+    background-color: #f5f5f7;
+}
+
+/* コンテナ */
+.requests-admin__container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* 見出し */
+.requests-admin__title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.requests-admin__title::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 20px;
+    background-color: #000;
+    margin-right: 10px;
+}
+
+/* タブ */
+.requests-admin__tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    gap: 40px;
+}
+
+.requests-admin__tab {
+    padding: 8px 0;
+    font-weight: bold;
+    font-size: 14px;
+    color: #747474;
+    text-decoration: none;
+    position: relative;
+}
+
+.requests-admin__tab-is-active {
+    color: #000;
+}
+
+.requests-admin__tab-is-active::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #000;
+}
+
+/* パネル（カード風） */
+.requests-admin__panel {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* テーブル */
+.requests-admin__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: center;
+}
+
+.requests-admin__row {
+    border-bottom: 1px solid #ddd;
+}
+
+.requests-admin__th,
+.requests-admin__td {
+    padding: 12px 20px;
+    color: #747474;
+}
+.requests-admin__td{
+    font-weight: bold;
+}
+.requests-admin__th {
+    font-weight: bold;
+    border-bottom: 3px solid #ddd;
+}
+
+.requests-admin__th-status {
+    width: 15%;
+}
+
+.requests-admin__th-action {
+    width: 10%;
+}
+
+/* チップ（状態表示） */
+.requests-admin__chip {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.requests-admin__chip-pending {
+    color: #747474;
+}
+
+.requests-admin__chip-approved {
+    color: #747474;
+}
+
+/* 詳細リンク */
+.requests-admin__detail-link {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.requests-admin__detail-link:hover {
+    text-decoration: underline;
+}
+
+/* ==============================
+   Responsive
+============================== */
+
+/* PC（1400〜1540px） */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .requests-admin__container {
+        max-width: 1200px;
+    }
+
+    .requests-admin__title {
+        font-size: 22px;
+    }
+
+    .requests-admin__tab {
+        font-size: 15px;
+    }
+
+    .requests-admin__th,
+    .requests-admin__td {
+        font-size: 15px;
+        padding: 14px 24px;
+    }
+}
+
+/* タブレット（768〜850px） */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .requests-admin__container {
+        max-width: 95%;
+        margin: 30px auto;
+    }
+
+    .requests-admin__title {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    .requests-admin__tabs {
+        gap: 20px;
+    }
+
+    .requests-admin__tab {
+        font-size: 12px;
+    }
+
+    .requests-admin__table {
+        font-size: 12px;
+    }
+
+    .requests-admin__th,
+    .requests-admin__td {
+        padding: 8px 12px;
+    }
+
+    .requests-admin__detail-link {
+        font-size: 12px;
+    }
+
+    .requests-admin__chip {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+}

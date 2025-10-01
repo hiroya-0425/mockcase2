@@ -1,0 +1,191 @@
+/* ==============================
+   Attendance List Page
+============================== */
+.attendance__list {
+    background-color: #f5f5f7;
+    padding: 40px 20px;
+    min-height: calc(100vh - 60px);
+}
+/* 月選択フォーム & テーブルをまとめる枠 */
+.attendance__list-container {
+    width: 70%;
+    margin: 0 auto;
+}
+/* 見出し行 */
+.attendance__list-headrow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.attendance__list-title {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: 4px solid #000;
+    padding-left: 10px;
+    margin: 0 0 20px 0;
+    text-align: left;
+}
+
+/* 月移動フォーム */
+.attendance__list-monthform {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 0 auto 20px;
+}
+
+/* 前月・翌月ボタン */
+.attendance__list-monthbtn {
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.attendance__list-monthbtn:hover {
+    background-color: #f0f0f0;
+}
+
+/* 月入力 */
+.attendance__list-month {
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.attendance__list-btn {
+    display: none;
+}
+
+.attendance__list-btn:hover {
+    opacity: 0.8;
+}
+
+/* 勤怠テーブル */
+.attendance__table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.attendance__table thead {
+    background-color: #f0f0f0;
+}
+
+.attendance__table th,
+.attendance__table td {
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
+.attendance__table th {
+    font-weight: bold;
+}
+
+.attendance__row:hover {
+    background-color: #fafafa;
+}
+
+/* 各セル */
+.attendance__cell {
+    font-size: 14px;
+}
+
+/* 詳細リンク */
+.attendance__detail-link {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+}
+
+.attendance__detail-link:hover {
+    text-decoration: underline;
+}
+
+/* ==============================
+   レスポンシブ対応
+============================== */
+
+/* PC (1400px～1540px) */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .attendance__list-container {
+        width: 65%;
+    }
+
+    .attendance__list-title {
+        font-size: 22px;
+    }
+
+    .attendance__list-monthform {
+        padding: 14px 24px;
+    }
+
+    .attendance__table th,
+    .attendance__table td {
+        padding: 14px 10px;
+        font-size: 15px;
+    }
+}
+
+/* タブレット (768px～850px) */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .attendance__list-container {
+        width: 90%;
+    }
+
+    .attendance__list-headrow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .attendance__list-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .attendance__list-monthform {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .attendance__list-monthbtn {
+        font-size: 13px;
+        padding: 6px 8px;
+        text-align: center;
+    }
+
+    .attendance__list-month {
+        font-size: 15px;
+    }
+
+    .attendance__table th,
+    .attendance__table td {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+
+    .attendance__detail-link {
+        font-size: 13px;
+    }
+}

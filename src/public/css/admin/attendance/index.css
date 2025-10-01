@@ -1,0 +1,310 @@
+.adminatt__container {
+    background-color: #f5f5f7;
+    padding: 40px 20px;
+    min-height: calc(100vh - 60px);
+    text-align: center;
+}
+/* ==============================
+   Title
+============================== */
+.adminatt__title {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: 4px solid #000;
+    padding-left: 10px;
+    margin: 0 0 30px 0;
+    text-align: left;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* ==============================
+   Navigation
+============================== */
+.adminatt__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 0 auto 30px;
+    width: 70%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.adminatt__nav-btn {
+    font-size: 14px;
+    font-weight: bold;
+    color: #747474;
+    text-decoration: none;
+}
+
+.adminatt__nav-btn:hover {
+    text-decoration: underline;
+}
+
+.adminatt__nav-date {
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.adminatt__nav-icon {
+    font-size: 16px;
+}
+/* ==============================
+   Table
+============================== */
+.adminatt__table {
+    width: 70%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.adminatt__th {
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #747474;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.adminatt__th-name {
+    width: 20%;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.adminatt__th-action {
+    width: 80px;
+}
+
+/* ==============================
+   Table Body
+============================== */
+.adminatt__td {
+    padding: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    color: #747474;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.adminatt__td-name {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.adminatt__td-action {
+    text-align: center;
+}
+
+/* ==============================
+   Links
+============================== */
+.adminatt__detail-link {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+}
+
+.adminatt__detail-link:hover {
+    text-decoration: underline;
+}
+
+.adminatt__detail-link-disabled {
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.adminatt__container {
+    background-color: #f5f5f7;
+    padding: 40px 20px;
+    min-height: calc(100vh - 60px);
+    text-align: center;
+}
+
+/* ==============================
+   Title
+============================== */
+.adminatt__title {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: 4px solid #000;
+    padding-left: 10px;
+    margin: 0 0 30px 0;
+    text-align: left;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==============================
+   Navigation
+============================== */
+.adminatt__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 0 auto 30px;
+    width: 70%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.adminatt__nav-btn {
+    font-size: 14px;
+    font-weight: bold;
+    color: #747474;
+    text-decoration: none;
+}
+
+.adminatt__nav-btn:hover {
+    text-decoration: underline;
+}
+
+.adminatt__nav-date {
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.adminatt__nav-icon {
+    font-size: 16px;
+}
+
+/* ==============================
+   Table
+============================== */
+.adminatt__table {
+    width: 70%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.adminatt__th {
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #747474;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.adminatt__th-name {
+    width: 20%;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.adminatt__th-action {
+    width: 80px;
+}
+
+/* ==============================
+   Table Body
+============================== */
+.adminatt__td {
+    padding: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    color: #747474;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.adminatt__td-name {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.adminatt__td-action {
+    text-align: center;
+}
+
+/* ==============================
+   Links
+============================== */
+.adminatt__detail-link {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+}
+
+.adminatt__detail-link:hover {
+    text-decoration: underline;
+}
+
+.adminatt__detail-link-disabled {
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* ==============================
+   Responsive
+============================== */
+
+/* PC (1400〜1540px) */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+
+    .adminatt__title,
+    .adminatt__nav,
+    .adminatt__table {
+        width: 80%;
+    }
+
+    .adminatt__th,
+    .adminatt__td {
+        font-size: 15px;
+        padding: 14px;
+    }
+}
+
+/* Tablet (768〜850px) */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+
+    .adminatt__title,
+    .adminatt__nav,
+    .adminatt__table {
+        width: 95%;
+    }
+
+    .adminatt__nav {
+        padding: 10px 12px;
+    }
+
+    .adminatt__th,
+    .adminatt__td {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .adminatt__detail-link {
+        font-size: 12px;
+    }
+}

@@ -1,1 +1,37 @@
 *.sqlite*
+# --- Laravel 基本 ---
+/vendor/
+/node_modules/
+/public/storage
+/storage/*.key
+.env
+.env.backup
+.phpunit.result.cache
+
+# --- Laravel キャッシュやログ ---
+/bootstrap/cache/*.php
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/framework/testing/*
+/storage/logs/*
+
+# --- Composer, npm, yarn ロックファイル (残す場合は外す) ---
+# composer.lock
+# package-lock.json
+# yarn.lock
+
+# --- Docker 関連 ---
+docker/mysql/data/
+docker/mysql/logs/
+docker/mysql/tmp/
+
+# phpMyAdmin セッションとかいらない場合
+docker/phpmyadmin/sessions/
+
+# --- OS/IDE ごみファイル ---
+*.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/

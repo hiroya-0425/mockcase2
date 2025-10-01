@@ -1,0 +1,171 @@
+/* ==============================
+   Attendance Page
+============================== */
+.attendance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f7;
+    min-height: calc(100vh - 60px);
+}
+
+/* パネル */
+.attendance__panel {
+    background-color: #f5f5f7;
+    padding: 40px 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.attendance__panel-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ステータスチップ */
+.attendance__status-chip {
+    display: inline-block;
+    background-color: #ddd;
+    color: #333;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.attendance__status-chip-out {
+    background-color: #e0e0e0;
+    color: #555;
+}
+
+.attendance__status-chip-break {
+    background-color: #ddd;
+    color: #000;
+}
+
+/* 日付 */
+.attendance__date {
+    font-size: 20px;
+    margin-bottom: 30px;
+
+}
+
+/* 時刻 */
+.attendance__clock {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    margin-top: -10px;
+}
+
+/* メッセージ */
+.attendance__message {
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* ボタン群 */
+.attendance__actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* ボタン共通 */
+.attendance__actions-btn {
+    display: inline-block;
+    padding: 12px 36px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    transition: opacity 0.2s;
+}
+
+/* 出勤/退勤ボタン */
+.attendance__actions-btn-primary {
+    background-color: #000;
+    color: #fff;
+}
+
+.attendance__actions-btn-primary:hover {
+    opacity: 0.8;
+}
+
+/* 休憩ボタン */
+.attendance__actions-btn-secondary {
+    background-color: #fff;
+    color: #000;
+}
+
+.attendance__actions-btn-secondary:hover {
+    background-color: #f0f0f0;
+}
+
+/* ==============================
+   レスポンシブ対応
+============================== */
+
+/* PC (1400px～1540px) */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .attendance__panel {
+        max-width: 600px;
+        padding: 50px 30px;
+    }
+
+    .attendance__date {
+        font-size: 22px;
+    }
+
+    .attendance__clock {
+        font-size: 46px;
+    }
+
+    .attendance__message {
+        font-size: 20px;
+    }
+
+    .attendance__actions-btn {
+        padding: 14px 40px;
+        font-size: 20px;
+    }
+}
+
+/* タブレット (768px～850px) */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .attendance__panel {
+        max-width: 90%;
+        padding: 30px 15px;
+    }
+
+    .attendance__date {
+        font-size: 18px;
+    }
+
+    .attendance__clock {
+        font-size: 32px;
+    }
+
+    .attendance__message {
+        font-size: 16px;
+    }
+
+    .attendance__actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .attendance__actions-btn {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 0;
+    }
+}
