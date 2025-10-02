@@ -81,16 +81,12 @@ class RequestController extends Controller
             return back()->with('status', '申請が見つかりません。');
         }
 
-        try {
-            DB::beginTransaction();
-
+        return DB::transaction(function () use ($requests, $submissionId) {
             foreach ($requests as $correctionRequest) {
-                if ($correctionRequest->status !== 'approved') {
-                    $correctionRequest->update([
-                        'status'   => 'approved',
-                        'admin_id' => Auth::guard('admin')->id(),
-                    ]);
-                }
+                // --- 修正申請を承認 ---
+                $correctionRequest->status   = 'approved';
+                $correctionRequest->admin_id = Auth::guard('admin')->id() ?? 1;
+                $correctionRequest->save();
 
                 $attendance = $correctionRequest->attendance;
 
@@ -102,6 +98,10 @@ class RequestController extends Controller
                     if ($correctionRequest->requested_end_time) {
                         $attendance->end_time = $correctionRequest->requested_end_time;
                     }
+                    if ($correctionRequest->remarks) {
+                        $attendance->remarks = $correctionRequest->remarks;
+                    }
+                    $attendance->status = 'corrected';
                     $attendance->save();
                 }
 
@@ -125,16 +125,9 @@ class RequestController extends Controller
                 }
             }
 
-            DB::commit();
-
-            return back()->with('status', '承認しました。勤怠に反映しました。');
-        } catch (\Throwable $e) {
-            DB::rollBack();
-            Log::error('[approve] error', [
-                'submission_id' => $submissionId,
-                'error' => $e->getMessage(),
-            ]);
-            return back()->with('status', 'エラーにより承認に失敗しました。');
-        }
+            return redirect()
+                ->route('admin.requests.index')
+                ->with('status', '承認しました。勤怠に反映しました。');
+        });
     }
 }

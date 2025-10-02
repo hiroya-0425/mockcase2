@@ -32,14 +32,23 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-    $created = false;
+        $attendance = null;
+
         switch ($request->input('action')) {
             case 'start': // 出勤
+                $exists = Attendance::where('user_id', $user->id)
+                    ->whereDate('work_date', today())
+                    ->exists();
+
+                if ($exists) {
+                    return back()->withErrors(['attendance' => '本日の出勤はすでに記録されています。']);
+                }
+
                 Attendance::create([
                     'user_id'   => $user->id,
                     'work_date' => today(),
                     'start_time' => now(),
-                    'status'    => 1,
+                    'status'    => 'working',
                 ]);
                 break;
 
@@ -49,10 +58,19 @@ class AttendanceController extends Controller
                     ->whereNull('end_time')
                     ->latest()
                     ->first();
+
                 if ($attendance) {
+                    $hasActiveBreak = $attendance->breaks()
+                        ->whereNull('break_end')
+                        ->exists();
+
+                    if ($hasActiveBreak) {
+                        return back()->withErrors(['attendance' => '休憩中は退勤できません。']);
+                    }
+
                     $attendance->update([
                         'end_time' => now(),
-                        'status'   => 'finished', // 退勤済み
+                        'status'   => 'finished',
                     ]);
                 }
                 break;
@@ -63,7 +81,8 @@ class AttendanceController extends Controller
                     ->whereNull('end_time')
                     ->latest()
                     ->first();
-                if ($attendance) {
+
+                if ($attendance && $attendance->status === 'working') {
                     $attendance->breaks()->create([
                         'break_start' => now(),
                     ]);
@@ -76,23 +95,26 @@ class AttendanceController extends Controller
                     ->whereNull('end_time')
                     ->latest()
                     ->first();
+
                 if ($attendance) {
                     $break = $attendance->breaks()
                         ->whereNull('break_end')
                         ->latest()
                         ->first();
+
                     if ($break) {
                         $break->update([
                             'break_end' => now(),
                         ]);
                     }
+
+                    $attendance->update([
+                        'status' => 'working',
+                    ]);
                 }
                 break;
         }
-        if ($created) {
-            $attendance->status = 'corrected';
-            $attendance->save();
-        }
+
         return redirect()->route('attendance.create');
     }
 
@@ -103,14 +125,12 @@ class AttendanceController extends Controller
         $start  = Carbon::parse($month . '-01')->startOfMonth();
         $end    = (clone $start)->endOfMonth();
 
-        // 今月の出勤レコードをまとめて取得（休憩も一括で）
         $attendances = Attendance::where('user_id', $user->id)
             ->whereBetween('work_date', [$start->toDateString(), $end->toDateString()])
             ->with('breaks')
             ->get()
             ->keyBy(fn($a) => Carbon::parse($a->work_date)->toDateString());
 
-        // その月の全日リストを作成
         $days = [];
         for ($d = $start->copy(); $d->lte($end); $d->addDay()) {
             $key = $d->toDateString();
@@ -120,23 +140,24 @@ class AttendanceController extends Controller
             ];
         }
 
-        // 前後月（ナビ用）
         $prevMonth = $start->copy()->subMonth()->format('Y-m');
         $nextMonth = $start->copy()->addMonth()->format('Y-m');
 
         return view('user.attendance.index', compact('days', 'month', 'prevMonth', 'nextMonth'));
     }
 
-    public function show($id)
+    // 🔹 モデルバインディング対応済み
+    public function show(Attendance $attendance)
     {
-        $attendance = Attendance::with(['breaks'])->findOrFail($id);
+        // Eager Load
+        $attendance->load('breaks');
 
         $pending = \App\Models\CorrectionRequest::where('attendance_id', $attendance->id)
-            ->where('user_id', \Illuminate\Support\Facades\Auth::id())
+            ->where('user_id', Auth::id())
             ->where('status', 'pending')
             ->get();
 
-        // ===== 出退勤 =====
+        // 出退勤
         $display = [
             'start_time' => $attendance->start_time,
             'end_time'   => $attendance->end_time,
@@ -150,7 +171,7 @@ class AttendanceController extends Controller
             }
         }
 
-        // ===== 休憩 =====
+        // 休憩
         $pendingBreaks = $pending->filter(fn($req) => !is_null($req->break_time_id))
             ->keyBy('break_time_id');
 

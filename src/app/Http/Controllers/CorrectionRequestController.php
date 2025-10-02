@@ -110,7 +110,7 @@ class CorrectionRequestController extends Controller
         }
 
         return redirect()
-            ->route('attendance.show', $attendance->id)
+            ->route('attendance.show', ['attendance' => $attendance->id])
             ->with('status', '修正申請を送信しました。承認をお待ちください。');
     }
 }

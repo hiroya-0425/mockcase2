@@ -18,15 +18,13 @@
 ### Dockerビルド
 1. git clone git@github.com:hiroya-0425/mockcase2.git
 2. DockerDesktop アプリを立ち上げる
-3. ```bash
-docker-compose up -d --build
-```
+3. docker-compose up -d --build
+
 
 ### Laravel 環境構築
-```bash
+
 1. docker-compose exec php bash
 2. composer install
-```
 3. 「.env.example」ファイルを コピーして「.env」を作成し、DB の設定を変更
 ```bash
 cp .env.example .env
@@ -60,13 +58,12 @@ php artisan migrate:fresh --seed
 - AttendanceSeeder で勤怠データを自動投入
 
 ### 主な機能
-- 一般ユーザー側
+一般ユーザー側
  - 出勤 / 退勤 / 休憩 の打刻
  - 勤怠一覧表示（日次・月次）
  - 勤怠修正申請（出退勤・休憩時間）
  - 申請一覧（承認待ち / 承認済み）
-
-- 管理者側
+管理者側
  - スタッフ一覧
  - 各スタッフの月次勤怠表
  - 勤怠詳細（出勤退勤・休憩・備考）

@@ -75,7 +75,7 @@
                                 : '-'
                             }}
                         </td>
-                        <td class="requests__td">{{ $req->reason ?: ($req->remarks ?? '-') }}</td>
+                        <td class="requests__td">{{ $req->remarks ?: ($req->reason ?? '-') }}</td>
                         <td class="requests__td">
                             {{ \Carbon\Carbon::parse($req->latest_at)->locale('ja')->isoFormat('YYYY/MM/DD') }}
                         </td>
