@@ -75,6 +75,40 @@ php artisan migrate:fresh --seed
 ### ER図
 
 ![ER図](./src/docs/ERD.png)
+
+### テスト環境構築
+`.env.testing` を作成し、以下のように設定してください。
+```env
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_test_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+```
+1. MySQL コンテナにログイン
+```bash
+docker exec -it mockcase2-mysql-1 mysql -u root -p
+```
+2. テスト用DB作成
+```bash
+CREATE DATABASE IF NOT EXISTS laravel_test_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+3. 権限付与
+```bash
+GRANT ALL PRIVILEGES ON laravel_test_db.* TO 'laravel_user'@'%';
+FLUSH PRIVILEGES;
+```
+4. マイグレーション実行
+```bash
+docker-compose exec php bash
+php artisan migrate --env=testing
+```
+
+### テスト実行
+```bash
+php artisan test
+```
 ### 注意事項(要件についてコーチと話し合って作成したもの)
 - 勤怠登録画面にはリアルタイム時計を表示。JavaScript により 1 秒ごとに更新され、ページリロードをせずとも現在時刻を表示するようにしています。
 - 勤怠時間の計算は 秒単位で算出し、1秒でも跨げば1分として切り上げる仕様としています。
