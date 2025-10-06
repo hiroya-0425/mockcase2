@@ -49,7 +49,7 @@
                 </button>
                 <button type="submit" name="action" value="break_in"
                     class="attendance__actions-btn attendance__actions-btn-secondary">
-                    休憩入り
+                    休憩入
                 </button>
                 @endif
             </form>

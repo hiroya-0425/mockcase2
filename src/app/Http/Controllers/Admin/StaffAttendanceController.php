@@ -47,7 +47,7 @@ class StaffAttendanceController extends Controller
     /**
      * CSV 出力
      */
-    public function csv(Request $request, User $user)
+    public function exportCsv(Request $request, User $user)
     {
         $monthParam = $request->query('month');
         $currentMonth = $monthParam
@@ -63,40 +63,50 @@ class StaffAttendanceController extends Controller
             ->orderBy('work_date')
             ->get();
 
+
         $filename = $user->name . '_' . $currentMonth->format('Y_m') . '_attendances.csv';
 
         $headers = [
-            'Content-Type' => 'text/csv',
+            'Content-Type' => 'text/csv; charset=UTF-8',
             'Content-Disposition' => "attachment; filename=\"$filename\"",
         ];
 
         $callback = function () use ($attendances) {
             $handle = fopen('php://output', 'w');
 
+            // ✅ Excel文字化け防止
+            fwrite($handle, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
             // ヘッダー行
-            fputcsv($handle, ['日付', '出勤', '退勤', '休憩(分)', '合計(分)']);
+            fputcsv($handle, ['日付', '出勤', '退勤', '休憩時間', '勤務時間']);
 
             foreach ($attendances as $attendance) {
                 $breakMinutes = $attendance->breaks->reduce(function ($carry, $break) {
                     if ($break->break_start && $break->break_end) {
-                        return $carry + Carbon::parse($break->break_start)
-                            ->diffInMinutes(Carbon::parse($break->break_end));
+                        return $carry + \Carbon\Carbon::parse($break->break_start)
+                            ->diffInMinutes(\Carbon\Carbon::parse($break->break_end));
                     }
                     return $carry;
                 }, 0);
 
                 $workMinutes = null;
                 if ($attendance->start_time && $attendance->end_time) {
-                    $workMinutes = Carbon::parse($attendance->start_time)
-                        ->diffInMinutes(Carbon::parse($attendance->end_time)) - $breakMinutes;
+                    $workMinutes = \Carbon\Carbon::parse($attendance->start_time)
+                        ->diffInMinutes(\Carbon\Carbon::parse($attendance->end_time)) - $breakMinutes;
+                    if ($workMinutes < 0) $workMinutes = 0;
                 }
 
+                $breakFormatted = sprintf('%d:%02d', floor($breakMinutes / 60), $breakMinutes % 60);
+                $workFormatted = $workMinutes !== null
+                    ? sprintf('%d:%02d', floor($workMinutes / 60), $workMinutes % 60)
+                    : '';
+
                 fputcsv($handle, [
-                    $attendance->work_date,
-                    $attendance->start_time ? Carbon::parse($attendance->start_time)->format('H:i') : '',
-                    $attendance->end_time ? Carbon::parse($attendance->end_time)->format('H:i') : '',
-                    $breakMinutes,
-                    $workMinutes,
+                    '="' . $attendance->work_date . '"',
+                    $attendance->start_time ? \Carbon\Carbon::parse($attendance->start_time)->format('H:i') : '',
+                    $attendance->end_time ? \Carbon\Carbon::parse($attendance->end_time)->format('H:i') : '',
+                    $breakFormatted,
+                    $workFormatted,
                 ]);
             }
 

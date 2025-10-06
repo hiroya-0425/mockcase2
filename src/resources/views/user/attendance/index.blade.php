@@ -9,8 +9,17 @@
         <div class="attendance__list-headrow">
             <form method="GET" action="{{ route('attendance.index') }}" class="attendance__list-monthform">
                 <a class="attendance__list-monthbtn" href="{{ route('attendance.index', ['month' => $prevMonth]) }}">← 前月</a>
-                <input type="month" name="month" value="{{ $month }}" class="attendance__list-month">
-                <button type="submit" class="attendance__list-btn">表示</button>
+
+                {{-- 📅と年月をまとめて表示 --}}
+                <label class="attendance__month-label">
+                    <span class="attendance__calendar-icon">📅</span>
+                    <span class="attendance__month-text">
+                        {{ \Carbon\Carbon::parse($month)->format('Y年n月') }}
+                    </span>
+                    {{-- 非表示だがクリック可能 --}}
+                    <input type="month" name="month" value="{{ $month }}" class="attendance__list-month" onchange="this.form.submit()">
+                </label>
+
                 <a class="attendance__list-monthbtn" href="{{ route('attendance.index', ['month' => $nextMonth]) }}">翌月 →</a>
             </form>
         </div>
